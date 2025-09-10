@@ -9,23 +9,23 @@ import ChatbotRoute from "./Routes/chatbot.js";
 dotenv.config();
 const app = express();
 
-// ✅ CORS CONFIGURATION
+// ✅ CORS: Allow frontend origin
 app.use(
   cors({
-    origin: "https://login-signup-form-frontend.vercel.app", // Your frontend URL
+    origin: "https://login-signup-form-frontend.vercel.app", // your frontend
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
 
-// ✅ Handle Preflight Requests
+// ✅ Preflight requests (OPTIONS)
 app.options("*", cors());
 
-// ✅ Body Parser
+// ✅ Body parser
 app.use(express.json());
 
-// ✅ Connect to MongoDB
+// ✅ Database
 ConnectMongoDb();
 
 // ✅ Routes
@@ -33,13 +33,9 @@ app.use("/user", UserRoute);
 app.use("/user/dashboard", DashboardRoute);
 app.use("/api/chatbot", ChatbotRoute);
 
-// ✅ Health Check
-app.get("/", (req, res) => {
-  res.send("🚀 Backend is running successfully!");
-});
+// ✅ Health check
+app.get("/", (req, res) => res.send("🚀 Backend running"));
 
-// ✅ Start Server
+// ✅ Start server
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on PORT ${PORT}`);
-});
+app.listen(PORT, () => console.log(`🚀 Server running on PORT ${PORT}`));
