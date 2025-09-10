@@ -5,14 +5,14 @@ import { AdminRequests } from "../Controllers/AdminRequests.js";
 
 const router = express.Router();
 
-// ✅ Handle preflight requests for CORS
+// ✅ Preflight requests for this router
 router.options("*", (req, res) => res.sendStatus(200));
 
-// Public Routes
+// Public routes
 router.post("/signup", UserSignup);
 router.post("/login", UserLogin);
 
-// Protected Routes
+// Protected route
 router.get("/requests", AdminRequests);
 
 export default router;
