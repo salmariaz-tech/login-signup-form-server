@@ -12,7 +12,7 @@ const app = express();
 // ✅ CORS FIX — Allow Frontend Origin
 app.use(
   cors({
-    origin: origin: "*" // ✅ Frontend deployed URL
+    origin: "*" ,// ✅ Frontend deployed URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -43,4 +43,5 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on PORT ${PORT}`);
 });
+
 
